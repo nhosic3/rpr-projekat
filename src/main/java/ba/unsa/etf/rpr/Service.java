@@ -80,4 +80,16 @@ public class Service {
     public int hashCode() {
         return Objects.hash(service_id, service_type, price, start_time, end_time, client_id);
     }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "service_id='" + service_id + '\'' +
+                ", service_type='" + service_type + '\'' +
+                ", price=" + price +
+                ", start_time=" + start_time +
+                ", end_time=" + end_time +
+                ", client_id='" + client_id + '\'' +
+                '}';
+    }
 }
