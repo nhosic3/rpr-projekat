@@ -6,7 +6,8 @@ import java.util.Objects;
 public class Employee {
     private String employee_id;
     private String first_name, last_name;
-    private Date brith_date, hire_date;
+    private Date brith_date;
+    private Date hire_date;
     private int salary;
     private String service_id;
 
