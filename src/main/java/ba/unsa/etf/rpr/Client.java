@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Client {
     private String client_id;
@@ -64,5 +65,18 @@ public class Client {
 
     public void setPaid(boolean paid) {
         this.paid = paid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return paid == client.paid && Objects.equals(client_id, client.client_id) && Objects.equals(first_name, client.first_name) && Objects.equals(last_name, client.last_name) && Objects.equals(phone_number, client.phone_number) && Objects.equals(email, client.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(client_id, first_name, last_name, phone_number, email, paid);
     }
 }
