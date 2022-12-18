@@ -79,4 +79,16 @@ public class Client {
     public int hashCode() {
         return Objects.hash(client_id, first_name, last_name, phone_number, email, paid);
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "client_id='" + client_id + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", email='" + email + '\'' +
+                ", paid=" + paid +
+                '}';
+    }
 }
