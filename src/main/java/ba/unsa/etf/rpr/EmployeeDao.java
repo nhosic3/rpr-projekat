@@ -13,5 +13,5 @@ public interface EmployeeDao extends Dao<Employee>{
     /**
      * Searches employees by ID
      */
-    List<Employee> searchById(String id);
+    List<Employee> searchById(int id);
 }
