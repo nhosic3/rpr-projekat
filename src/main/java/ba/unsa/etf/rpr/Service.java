@@ -4,15 +4,15 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Service {
-    private String service_id;
+    private int id;
     private String service_type;
     private int price;
     private Date start_time;
     private Date end_time;
-    private String client_id;
+    private int client_id;
 
-    public Service(String service_id, String service_type, int price, Date start_time, Date end_time, String client_id) {
-        this.service_id = service_id;
+    public Service(int id, String service_type, int price, Date start_time, Date end_time, int client_id) {
+        this.id = id;
         this.service_type = service_type;
         this.price = price;
         this.start_time = start_time;
@@ -20,12 +20,12 @@ public class Service {
         this.client_id = client_id;
     }
 
-    public String getService_id() {
-        return service_id;
+    public int getId() {
+        return id;
     }
 
-    public void setService_id(String service_id) {
-        this.service_id = service_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getService_type() {
@@ -60,11 +60,11 @@ public class Service {
         this.end_time = end_time;
     }
 
-    public String getClient_id() {
+    public int getClient_id() {
         return client_id;
     }
 
-    public void setClient_id(String client_id) {
+    public void setClient_id(int client_id) {
         this.client_id = client_id;
     }
 
@@ -73,23 +73,23 @@ public class Service {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Service service = (Service) o;
-        return price == service.price && Objects.equals(service_id, service.service_id) && Objects.equals(service_type, service.service_type) && Objects.equals(start_time, service.start_time) && Objects.equals(end_time, service.end_time) && Objects.equals(client_id, service.client_id);
+        return id == service.id && price == service.price && client_id == service.client_id && Objects.equals(service_type, service.service_type) && Objects.equals(start_time, service.start_time) && Objects.equals(end_time, service.end_time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(service_id, service_type, price, start_time, end_time, client_id);
+        return Objects.hash(id, service_type, price, start_time, end_time, client_id);
     }
 
     @Override
     public String toString() {
         return "Service{" +
-                "service_id='" + service_id + '\'' +
+                "id=" + id +
                 ", service_type='" + service_type + '\'' +
                 ", price=" + price +
                 ", start_time=" + start_time +
                 ", end_time=" + end_time +
-                ", client_id='" + client_id + '\'' +
+                ", client_id=" + client_id +
                 '}';
     }
 }
