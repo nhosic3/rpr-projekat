@@ -1,9 +1,11 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Idable;
-import ba.unsa.etf.rpr.exceptions.QuoteException;
+import ba.unsa.etf.rpr.exceptions.ServiceException;
+
 import java.sql.*;
 import java.util.*;
-public abstract class AbstractDao<T extends Idable> implements Dao<T>{
+public abstract class AbstractDao<T extends Idable> implements Dao<T> {
+
     private Connection connection;
     private String tableName;
 
@@ -17,9 +19,8 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             String password = p.getProperty("db.password");
             this.connection = DriverManager.getConnection(url, username, password);
         }catch (Exception e){
-            System.out.println("nemoguce uraditi konekciju na bazu");
             e.printStackTrace();
-
+            System.exit(0);
         }
     }
 
@@ -27,57 +28,39 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         return this.connection;
     }
 
-    public abstract T row2object(ResultSet rs) throws QuoteException;
+    public void setConnection(Connection connection){
+        this.connection = connection;
+    }
 
+    public abstract T row2object(ResultSet rs) throws ServiceException;
+
+    /**
+     * Method for mapping Object into Map
+     * @param object - a bean object for specific table
+     * @return key, value sorted map of object
+     */
     public abstract Map<String, Object> object2row(T object);
 
-    public T getById(int id) throws QuoteException {
-        String query = "SELECT * FROM "+this.tableName+" WHERE id = ?";
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) { // result set is iterator.
-                T result = row2object(rs);
-                rs.close();
-                return result;
-            } else {
-                throw new QuoteException("Object not found");
-            }
-        } catch (SQLException e) {
-            throw new QuoteException(e.getMessage(), e);
-        }
+    public T getById(int id) throws ServiceException {
+        return executeQueryUnique("SELECT * FROM "+this.tableName+" WHERE id = ?", new Object[]{id});
     }
 
-    public List<T> getAll() throws QuoteException {
-        String query = "SELECT * FROM "+ tableName;
-        List<T> results = new ArrayList<T>();
-        try{
-            PreparedStatement stmt = getConnection().prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()){ // result set is iterator.
-                T object = row2object(rs);
-                results.add(object);
-            }
-            rs.close();
-            return results;
-        }catch (SQLException e){
-            throw new QuoteException(e.getMessage(), e);
-        }
+    public List<T> getAll() throws ServiceException {
+        return executeQuery("SELECT * FROM "+ tableName, null);
     }
 
-    public void delete(int id) throws QuoteException {
+    public void delete(int id) throws ServiceException {
         String sql = "DELETE FROM "+tableName+" WHERE id = ?";
         try{
             PreparedStatement stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setObject(1, id);
+            stmt.setInt(1, id);
             stmt.executeUpdate();
         }catch (SQLException e){
-            throw new QuoteException(e.getMessage(), e);
+            throw new ServiceException(e.getMessage(), e);
         }
     }
 
-    public T add(T item) throws QuoteException{
+    public T add(T item) throws ServiceException{
         Map<String, Object> row = object2row(item);
         Map.Entry<String, String> columns = prepareInsertParts(row);
 
@@ -103,11 +86,11 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
 
             return item;
         }catch (SQLException e){
-            throw new QuoteException(e.getMessage(), e);
+            throw new ServiceException(e.getMessage(), e);
         }
     }
 
-    public T update(T item) throws QuoteException{
+    public T update(T item) throws ServiceException{
         Map<String, Object> row = object2row(item);
         String updateColumns = prepareUpdateParts(row);
         StringBuilder builder = new StringBuilder();
@@ -129,7 +112,34 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             stmt.executeUpdate();
             return item;
         }catch (SQLException e){
-            throw new QuoteException(e.getMessage(), e);
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+    public List<T> executeQuery(String query, Object[] params) throws ServiceException{
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            if (params != null){
+                for(int i = 1; i <= params.length; i++){
+                    stmt.setObject(i, params[i-1]);
+                }
+            }
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<T> resultList = new ArrayList<>();
+            while (rs.next()) {
+                resultList.add(row2object(rs));
+            }
+            return resultList;
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
+    public T executeQueryUnique(String query, Object[] params) throws ServiceException{
+        List<T> result = executeQuery(query, params);
+        if (result != null && result.size() == 1){
+            return result.get(0);
+        }else{
+            throw new ServiceException("Object not found");
         }
     }
 
@@ -152,14 +162,9 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
                 questions.append(",");
             }
         }
-        return new AbstractMap.SimpleEntry<String,String>(columns.toString(), questions.toString());
+        return new AbstractMap.SimpleEntry<>(columns.toString(), questions.toString());
     }
 
-    /**
-     * Prepare columns for update statement id=?, name=?, ...
-     * @param row
-     * @return
-     */
     private String prepareUpdateParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
 
