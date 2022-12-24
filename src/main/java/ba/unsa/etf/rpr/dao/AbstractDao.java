@@ -69,7 +69,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
             PreparedStatement stmt = getConnection().prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
-                if (entry.getKey().equals("id")) continue; // skip ID
+                if (entry.getKey().equals("id")) continue;
                 stmt.setObject(counter, entry.getValue());
                 counter++;
             }
@@ -97,7 +97,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
             PreparedStatement s = getConnection().prepareStatement(builder.toString());
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
-                if (entry.getKey().equals("id")) continue; // skip ID
+                if (entry.getKey().equals("id")) continue;
                 s.setObject(counter, entry.getValue());
                 counter++;
             }

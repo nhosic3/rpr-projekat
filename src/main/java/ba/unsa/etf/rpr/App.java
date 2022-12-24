@@ -17,18 +17,6 @@ import java.util.*;
 public class App 
 {
     public static void main( String[] args ) {
-        try{
-            ClientDaoSQLImpl c = new ClientDaoSQLImpl();
-            Client cc = new Client();
-            cc.setPhone_number("12345679");
-            cc.setPaid(true);
-            //cc.setID(1324);
-            cc.setEmail("asdasd@gmail.com");
-            cc.setFirst_name("Nedim");
-            cc.setLast_name("Hosic");
-            c.add(cc);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        System.out.println("Hello world");
     }
 }
