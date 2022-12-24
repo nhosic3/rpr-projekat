@@ -28,40 +28,21 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
     }
 
     @Override
-    public Map<String, Object> object2row(Employee object) {
+    public Map<String, Object> object2row(Client object) {
         Map<String, Object> item = new TreeMap<String, Object>();
         item.put("id", object.getId());
         item.put("first_name", object.getFirst_name());
         item.put("last_name", object.getLast_name());
-        item.put("brith_date", object.getBrith_date());
-        item.put("hire_date", object.getHire_date());
-        item.put("salary", object.getSalary());
-        item.put("service_id", object.getService_id());
+        item.put("phone_number", object.getPhone_number());
+        item.put("email", object.getEmail());
+        item.put("paid", object.isPaid());
         return item;
     }
 
     @Override
-    public List<Employee> searchByServiceId(int id) throws ServiceException{
-        String query = "SELECT * FROM Tickets WHERE service_id = ?";
-        List<Employee> list = new ArrayList<>();
-        try {
-            PreparedStatement s = getConnection().prepareStatement(query);
-            s.setInt(1, id);
-            ResultSet rs = s.executeQuery();
-            while (rs.next()) {
-                list.add(row2object(rs));
-            }
-            rs.close();
-        } catch (SQLException e) {
-            throw new ServiceException(e.getMessage(), e);
-        }
-        return list;
-    }
-
-    @Override
-    public List<Employee> searchByName(String name) throws ServiceException{
-        String query = "SELECT * FROM Tickets WHERE service_id = ?";
-        List<Employee> list = new ArrayList<>();
+    public List<Client> searchByName(String name) throws ServiceException{
+        String query = "SELECT * FROM Tickets WHERE first_name = ?";
+        List<Client> list = new ArrayList<>();
         try {
             PreparedStatement s = getConnection().prepareStatement(query);
             s.setString(1, name);
