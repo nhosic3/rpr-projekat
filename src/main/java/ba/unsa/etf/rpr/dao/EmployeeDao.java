@@ -13,7 +13,7 @@ public interface EmployeeDao extends Dao<Employee> {
     List<Employee> searchByServiceId(int id) throws ServiceException;
 
     /**
-     * Searches employees by ID
+     * Searches employees by names
      */
     List<Employee> searchByName(String name) throws ServiceException;
 }
