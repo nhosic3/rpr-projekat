@@ -1,4 +1,5 @@
 package ba.unsa.etf.rpr.dao;
+
 import ba.unsa.etf.rpr.domain.Idable;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
 
@@ -34,11 +35,6 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
 
     public abstract T row2object(ResultSet rs) throws ServiceException;
 
-    /**
-     * Method for mapping Object into Map
-     * @param object - a bean object for specific table
-     * @return key, value sorted map of object
-     */
     public abstract Map<String, Object> object2row(T object);
 
     public T getById(int id) throws ServiceException {
@@ -52,9 +48,9 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     public void delete(int id) throws ServiceException {
         String sql = "DELETE FROM "+tableName+" WHERE id = ?";
         try{
-            PreparedStatement stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
+            PreparedStatement s = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            s.setInt(1, id);
+            s.executeUpdate();
         }catch (SQLException e){
             throw new ServiceException(e.getMessage(), e);
         }
@@ -70,19 +66,17 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         builder.append("VALUES (").append(columns.getValue()).append(")");
 
         try{
-            PreparedStatement stmt = getConnection().prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
-            // bind params. IMPORTANT treeMap is used to keep columns sorted so params are bind correctly
+            PreparedStatement s = getConnection().prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
-                if (entry.getKey().equals("id")) continue; // skip ID
-                stmt.setObject(counter, entry.getValue());
+                if (entry.getKey().equals("id")) continue;
+                s.setObject(counter, entry.getValue());
                 counter++;
             }
-            stmt.executeUpdate();
-
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next(); // we know that there is one key
-            item.setId(rs.getInt(1)); //set id to return it back */
+            s.executeUpdate();
+            ResultSet rs = s.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
 
             return item;
         }catch (SQLException e){
@@ -101,15 +95,15 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
                 .append(" WHERE id = ?");
 
         try{
-            PreparedStatement stmt = getConnection().prepareStatement(builder.toString());
+            PreparedStatement s = getConnection().prepareStatement(builder.toString());
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
                 if (entry.getKey().equals("id")) continue; // skip ID
-                stmt.setObject(counter, entry.getValue());
+                s.setObject(counter, entry.getValue());
                 counter++;
             }
-            stmt.setObject(counter, item.getId());
-            stmt.executeUpdate();
+            s.setObject(counter, item.getId());
+            s.executeUpdate();
             return item;
         }catch (SQLException e){
             throw new ServiceException(e.getMessage(), e);
@@ -117,13 +111,13 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     }
     public List<T> executeQuery(String query, Object[] params) throws ServiceException{
         try {
-            PreparedStatement stmt = getConnection().prepareStatement(query);
+            PreparedStatement s = getConnection().prepareStatement(query);
             if (params != null){
                 for(int i = 1; i <= params.length; i++){
-                    stmt.setObject(i, params[i-1]);
+                    s.setObject(i, params[i-1]);
                 }
             }
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = s.executeQuery();
             ArrayList<T> resultList = new ArrayList<>();
             while (rs.next()) {
                 resultList.add(row2object(rs));
@@ -143,18 +137,13 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         }
     }
 
-    /**
-     * Accepts KV storage of column names and return CSV of columns and question marks for insert statement
-     * Example: (id, name, date) ?,?,?
-     */
     private Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
         StringBuilder questions = new StringBuilder();
-
         int counter = 0;
         for (Map.Entry<String, Object> entry: row.entrySet()) {
             counter++;
-            if (entry.getKey().equals("id")) continue; //skip insertion of id due autoincrement
+            if (entry.getKey().equals("id")) continue;
             columns.append(entry.getKey());
             questions.append("?");
             if (row.size() != counter) {
@@ -167,11 +156,10 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
 
     private String prepareUpdateParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
-
         int counter = 0;
         for (Map.Entry<String, Object> entry: row.entrySet()) {
             counter++;
-            if (entry.getKey().equals("id")) continue; //skip update of id due where clause
+            if (entry.getKey().equals("id")) continue;
             columns.append(entry.getKey()).append("= ?");
             if (row.size() != counter) {
                 columns.append(",");
