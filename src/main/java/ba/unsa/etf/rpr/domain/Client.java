@@ -2,6 +2,9 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+/**
+ * Client data
+ */
 public class Client implements Idable {
     private int id;
     private String first_name, last_name;
