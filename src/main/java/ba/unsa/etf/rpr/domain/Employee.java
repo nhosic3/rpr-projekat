@@ -1,9 +1,9 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.domain;
 
 import java.util.Date;
 import java.util.Objects;
 
-public class Employee {
+public class Employee implements Idable {
     private int id;
     private String first_name, last_name;
     private Date brith_date;
@@ -11,6 +11,9 @@ public class Employee {
     private int salary;
     private int service_id;
 
+    public Employee(){
+
+    }
     public Employee(int id, String first_name, String last_name, Date brith_date, Date hire_date, int salary, int service_id) {
         this.id = id;
         this.first_name = first_name;
