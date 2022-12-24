@@ -13,7 +13,7 @@ public interface ServiceDao extends Dao<Service> {
     List<Service> searchByServiceType(String serviceType) throws ServiceException;
 
     /**
-     * Searches services by Client ID
+     * Searches services by client ID
      */
     List<Service> searchByClientId(int id) throws ServiceException;
 
