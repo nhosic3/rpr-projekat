@@ -58,4 +58,22 @@ public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDa
         }
         return list;
     }
+
+    @Override
+    public List<Service> searchByClientId(int id) throws ServiceException{
+        String query = "SELECT * FROM Service WHERE Client_id = ?";
+        List<Service> list = new ArrayList<>();
+        try {
+            PreparedStatement s = getConnection().prepareStatement(query);
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                list.add(row2object(rs));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+        return list;
+    }
 }
