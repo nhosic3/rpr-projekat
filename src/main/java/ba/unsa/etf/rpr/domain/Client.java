@@ -1,9 +1,8 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.domain;
 
-import java.util.Date;
 import java.util.Objects;
 
-public class Client implements Idable{
+public class Client implements Idable {
     private int id;
     private String first_name, last_name;
     private String phone_number;
