@@ -1,9 +1,9 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.domain;
 
 import java.util.Date;
 import java.util.Objects;
 
-public class Service {
+public class Service implements Idable{
     private int id;
     private String service_type;
     private int price;
