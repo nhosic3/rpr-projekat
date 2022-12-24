@@ -14,7 +14,7 @@ public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements Employe
     public Employee row2object(ResultSet rs) throws ServiceException {
         try {
             Employee e = new Employee();
-            e.setId(rs.getInt("id"));
+            e.setID(rs.getInt("id"));
             e.setFirst_name(rs.getString("first_name"));
             e.setLast_name(rs.getString("last_name"));
             e.setBrith_date(rs.getDate("brith_date"));
@@ -30,7 +30,7 @@ public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements Employe
     @Override
     public Map<String, Object> object2row(Employee object) {
         Map<String, Object> m = new TreeMap<String, Object>();
-        m.put("id", object.getId());
+        m.put("id", object.getID());
         m.put("first_name", object.getFirst_name());
         m.put("last_name", object.getLast_name());
         m.put("brith_date", object.getBrith_date());
