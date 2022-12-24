@@ -11,6 +11,10 @@ public class Service implements Idable{
     private Date end_time;
     private int client_id;
 
+    public Service(){
+
+    }
+
     public Service(int id, String service_type, int price, Date start_time, Date end_time, int client_id) {
         this.id = id;
         this.service_type = service_type;
