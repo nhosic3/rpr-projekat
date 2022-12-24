@@ -1,11 +1,11 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Service;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
 
 import java.sql.*;
 import java.util.*;
+import java.sql.Date;
 
 public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDao {
 
@@ -66,6 +66,42 @@ public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDa
         try {
             PreparedStatement s = getConnection().prepareStatement(query);
             s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                list.add(row2object(rs));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Service> searchByStartTime(java.util.Date st) throws ServiceException{
+        String query = "SELECT * FROM Service WHERE Start_time = ?";
+        List<Service> list = new ArrayList<>();
+        try {
+            PreparedStatement s = getConnection().prepareStatement(query);
+            s.setDate(1, (Date) st);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                list.add(row2object(rs));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Service> searchByEndTime(java.util.Date et) throws ServiceException{
+        String query = "SELECT * FROM Service WHERE End_time = ?";
+        List<Service> list = new ArrayList<>();
+        try {
+            PreparedStatement s = getConnection().prepareStatement(query);
+            s.setDate(1, (Date) et);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 list.add(row2object(rs));
