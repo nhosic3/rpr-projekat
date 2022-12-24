@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Idable;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
 
+import java.io.FileReader;
 import java.sql.*;
 import java.util.*;
 public abstract class AbstractDao<T extends Idable> implements Dao<T> {
@@ -13,11 +14,12 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     public AbstractDao(String tableName) {
         try{
             this.tableName = tableName;
+            FileReader f = new FileReader("src/main/resources/properties");
             Properties p = new Properties();
-            p.load(ClassLoader.getSystemResource("application.properties").openStream());
-            String url = p.getProperty("db.connection_string");
-            String username = p.getProperty("db.username");
-            String password = p.getProperty("db.password");
+            p.load(f);
+            String url = p.getProperty("url");
+            String username = p.getProperty("username");
+            String password = p.getProperty("password");
             this.connection = DriverManager.getConnection(url, username, password);
         }catch (Exception e){
             e.printStackTrace();
