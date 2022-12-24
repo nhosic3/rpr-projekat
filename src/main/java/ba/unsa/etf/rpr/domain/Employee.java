@@ -3,6 +3,10 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Employee data
+ */
+
 public class Employee implements Idable {
     private int id;
     private String first_name, last_name;
