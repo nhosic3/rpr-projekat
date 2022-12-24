@@ -7,14 +7,14 @@ import java.sql.*;
 import java.util.*;
 public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
     public ClientDaoSQLImpl() {
-        super("clients");
+        super("Client");
     }
 
     @Override
     public Client row2object(ResultSet rs) throws ServiceException {
         try {
             Client e = new Client();
-            e.setId(rs.getInt("id"));
+            e.setID(rs.getInt("id"));
             e.setFirst_name(rs.getString("first_name"));
             e.setLast_name(rs.getString("last_name"));
             e.setPhone_number(rs.getString("phone_number"));
@@ -29,7 +29,7 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
     @Override
     public Map<String, Object> object2row(Client object) {
         Map<String, Object> m = new TreeMap<String, Object>();
-        m.put("id", object.getId());
+        m.put("id", object.getID());
         m.put("first_name", object.getFirst_name());
         m.put("last_name", object.getLast_name());
         m.put("phone_number", object.getPhone_number());
