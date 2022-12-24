@@ -31,14 +31,14 @@ public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDa
 
     @Override
     public Map<String, Object> object2row(Service object) {
-        Map<String, Object> item = new TreeMap<String, Object>();
-        item.put("id", object.getId());
-        item.put("service_type", object.getService_type());
-        item.put("price", object.getPrice());
-        item.put("start_time", object.getStart_time());
-        item.put("end_time", object.getEnd_time());
-        item.put("client_id", object.getClient_id());
-        return item;
+        Map<String, Object> m = new TreeMap<String, Object>();
+        m.put("id", object.getId());
+        m.put("service_type", object.getService_type());
+        m.put("price", object.getPrice());
+        m.put("start_time", object.getStart_time());
+        m.put("end_time", object.getEnd_time());
+        m.put("client_id", object.getClient_id());
+        return m;
     }
 
     @Override
