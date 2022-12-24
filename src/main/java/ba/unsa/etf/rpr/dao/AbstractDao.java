@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.Idable;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 public abstract class AbstractDao<T extends Idable> implements Dao<T> {
@@ -14,9 +15,8 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     public AbstractDao(String tableName) {
         try{
             this.tableName = tableName;
-            FileReader f = new FileReader("src/main/resources/properties");
             Properties p = new Properties();
-            p.load(f);
+            p.load(ClassLoader.getSystemResource("db.properties").openStream());
             String url = p.getProperty("url");
             String username = p.getProperty("username");
             String password = p.getProperty("password");
@@ -61,25 +61,22 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     public T add(T item) throws ServiceException{
         Map<String, Object> row = object2row(item);
         Map.Entry<String, String> columns = prepareInsertParts(row);
-
         StringBuilder builder = new StringBuilder();
         builder.append("INSERT INTO ").append(tableName);
         builder.append(" (").append(columns.getKey()).append(") ");
         builder.append("VALUES (").append(columns.getValue()).append(")");
-
         try{
-            PreparedStatement s = getConnection().prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = getConnection().prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
-                if (entry.getKey().equals("id")) continue;
-                s.setObject(counter, entry.getValue());
+                if (entry.getKey().equals("id")) continue; // skip ID
+                stmt.setObject(counter, entry.getValue());
                 counter++;
             }
-            s.executeUpdate();
-            ResultSet rs = s.getGeneratedKeys();
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-            item.setId(rs.getInt(1));
-
+            item.setID(rs.getInt(1));
             return item;
         }catch (SQLException e){
             throw new ServiceException(e.getMessage(), e);
@@ -104,7 +101,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
                 s.setObject(counter, entry.getValue());
                 counter++;
             }
-            s.setObject(counter, item.getId());
+            s.setObject(counter, item.getID());
             s.executeUpdate();
             return item;
         }catch (SQLException e){
