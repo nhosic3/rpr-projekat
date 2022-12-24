@@ -3,6 +3,9 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Service data
+ */
 public class Service implements Idable{
     private int id;
     private String service_type;
