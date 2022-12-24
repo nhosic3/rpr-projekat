@@ -60,7 +60,7 @@ public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements Employe
 
     @Override
     public List<Employee> searchByName(String name) throws ServiceException{
-        String query = "SELECT * FROM Tickets WHERE service_id = ?";
+        String query = "SELECT * FROM Tickets WHERE first_name = ?";
         List<Employee> list = new ArrayList<>();
         try {
             PreparedStatement s = getConnection().prepareStatement(query);
