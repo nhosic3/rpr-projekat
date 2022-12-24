@@ -17,7 +17,7 @@ public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDa
     public Service row2object(ResultSet rs) throws ServiceException {
         try {
             Service e = new Service();
-            e.setId(rs.getInt("id"));
+            e.setID(rs.getInt("id"));
             e.setService_type(rs.getString("service_type"));
             e.setPrice(rs.getInt("price"));
             e.setStart_time(rs.getDate("start_time"));
@@ -32,7 +32,7 @@ public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDa
     @Override
     public Map<String, Object> object2row(Service object) {
         Map<String, Object> m = new TreeMap<String, Object>();
-        m.put("id", object.getId());
+        m.put("id", object.getID());
         m.put("service_type", object.getService_type());
         m.put("price", object.getPrice());
         m.put("start_time", object.getStart_time());
