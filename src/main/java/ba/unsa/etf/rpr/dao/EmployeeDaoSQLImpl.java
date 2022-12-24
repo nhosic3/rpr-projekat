@@ -29,24 +29,24 @@ public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements Employe
 
     @Override
     public Map<String, Object> object2row(Employee object) {
-        Map<String, Object> item = new TreeMap<String, Object>();
-        item.put("id", object.getId());
-        item.put("first_name", object.getFirst_name());
-        item.put("last_name", object.getLast_name());
-        item.put("brith_date", object.getBrith_date());
-        item.put("hire_date", object.getHire_date());
-        item.put("salary", object.getSalary());
-        item.put("service_id", object.getService_id());
-        return item;
+        Map<String, Object> m = new TreeMap<String, Object>();
+        m.put("id", object.getId());
+        m.put("first_name", object.getFirst_name());
+        m.put("last_name", object.getLast_name());
+        m.put("brith_date", object.getBrith_date());
+        m.put("hire_date", object.getHire_date());
+        m.put("salary", object.getSalary());
+        m.put("service_id", object.getService_id());
+        return m;
     }
 
     @Override
-    public List<Employee> searchByServiceId(int id) throws ServiceException{
+    public List<Employee> searchByServiceId(int s_id) throws ServiceException{
         String query = "SELECT * FROM Employee WHERE service_id = ?";
         List<Employee> list = new ArrayList<>();
         try {
             PreparedStatement s = getConnection().prepareStatement(query);
-            s.setInt(1, id);
+            s.setInt(1, s_id);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 list.add(row2object(rs));
