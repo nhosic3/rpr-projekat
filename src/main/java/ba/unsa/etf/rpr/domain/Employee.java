@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 
 public class Employee implements Idable {
-    private int id;
+    private int ID;
     private String first_name, last_name;
     private Date brith_date;
     private Date hire_date;
@@ -18,8 +18,8 @@ public class Employee implements Idable {
     public Employee(){
 
     }
-    public Employee(int id, String first_name, String last_name, Date brith_date, Date hire_date, int salary, int service_id) {
-        this.id = id;
+    public Employee(int ID, String first_name, String last_name, Date brith_date, Date hire_date, int salary, int service_id) {
+        this.ID = ID;
         this.first_name = first_name;
         this.last_name = last_name;
         this.brith_date = brith_date;
@@ -28,12 +28,12 @@ public class Employee implements Idable {
         this.service_id = service_id;
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getFirst_name() {
@@ -89,18 +89,18 @@ public class Employee implements Idable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && salary == employee.salary && service_id == employee.service_id && Objects.equals(first_name, employee.first_name) && Objects.equals(last_name, employee.last_name) && Objects.equals(brith_date, employee.brith_date) && Objects.equals(hire_date, employee.hire_date);
+        return ID == employee.ID && salary == employee.salary && service_id == employee.service_id && Objects.equals(first_name, employee.first_name) && Objects.equals(last_name, employee.last_name) && Objects.equals(brith_date, employee.brith_date) && Objects.equals(hire_date, employee.hire_date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, first_name, last_name, brith_date, hire_date, salary, service_id);
+        return Objects.hash(ID, first_name, last_name, brith_date, hire_date, salary, service_id);
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "id=" + ID +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
                 ", brith_date=" + brith_date +
