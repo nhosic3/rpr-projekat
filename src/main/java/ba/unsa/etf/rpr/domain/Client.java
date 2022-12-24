@@ -9,6 +9,9 @@ public class Client implements Idable {
     private String email;
     private boolean paid;
 
+    public Client(){
+
+    }
     public Client(int id, String first_name, String last_name, String phone_number, String email, boolean paid) {
         this.id = id;
         this.first_name = first_name;
