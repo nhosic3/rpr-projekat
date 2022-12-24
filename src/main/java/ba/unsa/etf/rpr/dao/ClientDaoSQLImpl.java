@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Client;
-import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
 
 import java.sql.*;
@@ -29,19 +28,19 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public Map<String, Object> object2row(Client object) {
-        Map<String, Object> item = new TreeMap<String, Object>();
-        item.put("id", object.getId());
-        item.put("first_name", object.getFirst_name());
-        item.put("last_name", object.getLast_name());
-        item.put("phone_number", object.getPhone_number());
-        item.put("email", object.getEmail());
-        item.put("paid", object.isPaid());
-        return item;
+        Map<String, Object> m = new TreeMap<String, Object>();
+        m.put("id", object.getId());
+        m.put("first_name", object.getFirst_name());
+        m.put("last_name", object.getLast_name());
+        m.put("phone_number", object.getPhone_number());
+        m.put("email", object.getEmail());
+        m.put("paid", object.isPaid());
+        return m;
     }
 
     @Override
     public List<Client> searchByName(String name) throws ServiceException{
-        String query = "SELECT * FROM Tickets WHERE first_name = ?";
+        String query = "SELECT * FROM Client WHERE First_name = ?";
         List<Client> list = new ArrayList<>();
         try {
             PreparedStatement s = getConnection().prepareStatement(query);
