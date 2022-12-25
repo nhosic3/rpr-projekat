@@ -4,8 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
 <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LoginController">
-  <columnConstraints>
+    <stylesheets>
+        <URL value="@../CSS/style.css" />
+    </stylesheets>
+    <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="63.0" />
     <ColumnConstraints hgrow="ALWAYS" maxWidth="148.0" minWidth="10.0" prefWidth="117.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="148.0" minWidth="10.0" prefWidth="117.0" />
