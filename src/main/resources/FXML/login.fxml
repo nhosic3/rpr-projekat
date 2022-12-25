@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LoginController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="63.0" />
     <ColumnConstraints hgrow="ALWAYS" maxWidth="148.0" minWidth="10.0" prefWidth="117.0" />
@@ -25,15 +25,15 @@
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Label>
-      <TextField prefHeight="25.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
+      <TextField fx:id="emailId" prefHeight="25.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></TextField>
-      <PasswordField GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+      <PasswordField fx:id="passwordId" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></PasswordField>
-      <Button defaultButton="true" mnemonicParsing="false" prefHeight="27.0" prefWidth="326.0" text="Login" GridPane.columnSpan="3" GridPane.rowIndex="3">
+      <Button fx:id="loginButtonId" defaultButton="true" mnemonicParsing="false" onAction="#loginAction" prefHeight="27.0" prefWidth="326.0" text="Login" GridPane.columnSpan="3" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
