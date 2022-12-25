@@ -14,21 +14,15 @@ public class LoginController {
 
     @FXML
     public void initialize() {
-        emailId.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
-                if(emailId.getText().isEmpty()){
-                    emailId.getStyleClass().add("incorrectField");
-                }
-            }
-        });
         passwordId.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
                 if(passwordId.getText().length()<8){
+                    passwordId.getStyleClass().removeAll("correctField");
                     passwordId.getStyleClass().add("incorrectField");
                 }
                 else{
+                    passwordId.getStyleClass().removeAll("incorrectField");
                     passwordId.getStyleClass().add("correctField");
                 }
             }
