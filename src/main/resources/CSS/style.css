@@ -1,0 +1,9 @@
+#loginButtonId{
+    -fx-background-color: lightskyblue;
+}
+.incorrectField{
+    -fx-background-color: lightpink;
+}
+.correctField{
+    -fx-background-color: yellowgreen;
+}
