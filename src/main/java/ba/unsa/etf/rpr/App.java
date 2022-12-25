@@ -1,22 +1,20 @@
 package ba.unsa.etf.rpr;
 
-import ba.unsa.etf.rpr.domain.Client;
-import ba.unsa.etf.rpr.dao.ClientDaoSQLImpl;
-import ba.unsa.etf.rpr.domain.Service;
-import ba.unsa.etf.rpr.domain.Employee;
-import ba.unsa.etf.rpr.exceptions.ServiceException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.*;
-
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args ) {
-        System.out.println("Hello world");
+public class App extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/sample.fxml"));
+        primaryStage.setTitle("Hello, World!");
+        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.show();
+    }
+    public static void main(String[] args) {
+        launch(args);
     }
 }
