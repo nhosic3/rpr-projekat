@@ -50,4 +50,15 @@ public class LoginController {
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
     }
+
+    public void registerAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/register.fxml"));
+        Parent root = l.load();
+        RegisterController rc = l.getController();
+        stage.setResizable(false);
+        stage.setTitle("Register");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+    }
 }
