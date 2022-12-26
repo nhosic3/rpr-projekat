@@ -13,14 +13,15 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
     @Override
     public Client row2object(ResultSet rs) throws ServiceException {
         try {
-            Client e = new Client();
-            e.setID(rs.getInt("id"));
-            e.setFirst_name(rs.getString("first_name"));
-            e.setLast_name(rs.getString("last_name"));
-            e.setPhone_number(rs.getString("phone_number"));
-            e.setEmail(rs.getString("email"));
-            e.setPaid(rs.getBoolean("paid"));
-            return e;
+            Client c = new Client();
+            c.setID(rs.getInt("id"));
+            c.setFirst_name(rs.getString("first_name"));
+            c.setLast_name(rs.getString("last_name"));
+            c.setPhone_number(rs.getString("phone_number"));
+            c.setEmail(rs.getString("email"));
+            c.setPassword(rs.getString("password"));
+            c.setPaid(rs.getBoolean("paid"));
+            return c;
         } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e);
         }
@@ -34,6 +35,7 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
         m.put("last_name", object.getLast_name());
         m.put("phone_number", object.getPhone_number());
         m.put("email", object.getEmail());
+        m.put("password", object.getPassword());
         m.put("paid", object.isPaid());
         return m;
     }
@@ -54,5 +56,21 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
             throw new ServiceException(e.getMessage(), e);
         }
         return list;
+    }
+
+    @Override
+    public Client searchByEmail(String email) throws ServiceException{
+        List<Client> l = null;
+        try {
+            l = this.getAll();
+        } catch (ServiceException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+        for(Client c : l){
+            if (c.getEmail().equals(email))
+                return c;
+        }
+        return null;
     }
 }
