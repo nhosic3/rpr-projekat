@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr;
 
+import ba.unsa.etf.rpr.dao.ClientDaoSQLImpl;
+import ba.unsa.etf.rpr.exceptions.ServiceException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,7 +20,7 @@ public class App extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
-    public static void main(String[] args) {
+    public static void main(String[] args){
         launch(args);
     }
 }
