@@ -10,17 +10,19 @@ public class Client implements Idable {
     private String first_name, last_name;
     private String phone_number;
     private String email;
+    private String password;
     private boolean paid;
 
     public Client(){
 
     }
-    public Client(int ID, String first_name, String last_name, String phone_number, String email, boolean paid) {
+    public Client(int ID, String first_name, String last_name, String phone_number, String email, String password, boolean paid) {
         this.ID = ID;
         this.first_name = first_name;
         this.last_name = last_name;
         this.phone_number = phone_number;
         this.email = email;
+        this.password = password;
         this.paid = paid;
     }
 
@@ -64,6 +66,14 @@ public class Client implements Idable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isPaid() {
