@@ -26,22 +26,22 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Label>
-      <TextField promptText="First name" GridPane.rowIndex="1">
+      <TextField fx:id="firstNameId" promptText="First name" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField promptText="Last name" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="lastNameId" promptText="Last name" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField promptText="Email" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <TextField fx:id="emailId" promptText="Email" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField promptText="Phone number" GridPane.columnSpan="2" GridPane.rowIndex="4">
+      <TextField fx:id="numberId" promptText="Phone number" GridPane.columnSpan="2" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
@@ -51,7 +51,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Button>
-      <PasswordField promptText="Password" GridPane.columnSpan="2" GridPane.rowIndex="3">
+      <PasswordField fx:id="passwordId" promptText="Password" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
