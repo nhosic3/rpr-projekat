@@ -65,10 +65,24 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
             l = this.getAll();
         } catch (ServiceException e) {
             System.out.println(e.getMessage());
-            System.exit(1);
         }
         for(Client c : l){
             if (c.getEmail().equals(email))
+                return c;
+        }
+        return null;
+    }
+
+    @Override
+    public Client searchByPassword(String password) throws ServiceException{
+        List<Client> l = null;
+        try {
+            l = this.getAll();
+        } catch (ServiceException e) {
+            System.out.println(e.getMessage());
+        }
+        for(Client c : l){
+            if (c.getPassword().equals(password))
                 return c;
         }
         return null;
