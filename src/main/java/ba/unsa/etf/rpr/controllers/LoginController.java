@@ -47,9 +47,17 @@ public class LoginController {
             return;
         ClientDaoSQLImpl c = new ClientDaoSQLImpl();
         Client cl = c.searchByEmail(emailId.getText());
-        if (!cl.getEmail().equals(emailId.getText())){
+        if(cl == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Incorrect email");
+            alert.setTitle("Incorrect login data");
+            alert.setHeaderText("Try again!");
+            alert.show();
+            return;
+        }
+        Client cl2 = c.searchByPassword(passwordId.getText());
+        if(cl2 == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Incorrect login data");
             alert.setHeaderText("Try again!");
             alert.show();
             return;
