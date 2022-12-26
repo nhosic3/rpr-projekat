@@ -12,7 +12,12 @@ public interface ClientDao extends Dao<Client> {
     List<Client> searchByName(String name) throws ServiceException;
 
     /**
-     * Searches clients by names
+     * Searches clients by emails
      */
     Client searchByEmail(String email) throws ServiceException;
+
+    /**
+     * Searches clients by passwords
+     */
+    Client searchByPassword(String password) throws ServiceException;
 }
