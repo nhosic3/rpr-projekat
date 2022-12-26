@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.dao.ClientDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.Client;
+import ba.unsa.etf.rpr.exceptions.ServiceException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -7,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -38,9 +42,18 @@ public class LoginController {
         });
     }
 
-    public void loginAction(ActionEvent actionEvent) throws IOException {
-        if(passwordId.getText().isEmpty() || emailId.getText().isEmpty())
+    public void loginAction(ActionEvent actionEvent) throws IOException, ServiceException {
+        if(passwordId.getText().length()<8 || emailId.getText().isEmpty())
             return;
+        ClientDaoSQLImpl c = new ClientDaoSQLImpl();
+        Client cl = c.searchByEmail(emailId.getText());
+        if (!cl.getEmail().equals(emailId.getText())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Incorrect email");
+            alert.setHeaderText("Try again!");
+            alert.show();
+            return;
+        }
         Stage stage = new Stage();
         FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/home.fxml"));
         Parent root = l.load();
