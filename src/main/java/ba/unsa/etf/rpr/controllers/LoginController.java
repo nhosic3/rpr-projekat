@@ -66,7 +66,6 @@ public class LoginController {
         FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/home.fxml"));
         Parent root = l.load();
         HomeController hc = l.getController();
-        hc.welcomeField.setText(hc.welcomeField.getText()+emailId.getText());
         stage.setTitle("Home");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
