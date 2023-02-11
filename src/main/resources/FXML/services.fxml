@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="FXML.Services"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<GridPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ServicesController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <TableView prefHeight="429.0" prefWidth="642.0">
+        <columns>
+          <TableColumn prefWidth="56.0" text="ID" />
+          <TableColumn prefWidth="179.0" text="Service_type" />
+            <TableColumn prefWidth="71.0" text="Price" />
+            <TableColumn prefWidth="100.0" text="Start_time" />
+            <TableColumn prefWidth="109.0" text="End_time" />
+            <TableColumn prefWidth="84.0" text="Client_ID" />
+        </columns>
+      </TableView>
+   </children>
+</GridPane>
