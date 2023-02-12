@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.HomeController">
    <bottom>
-      <Button mnemonicParsing="false" text="My services" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#myServicesAction" text="My services" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
@@ -81,11 +81,11 @@
                   </Label>
                </children>
             </VBox>
-            <Button fx:id="buyAngular" mnemonicParsing="false" onAction="#buyActionAngular" text="Buy" GridPane.columnIndex="2" />
-            <Button fx:id="buyHcj" mnemonicParsing="false" onAction="#buyActionHcj" text="Buy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="buyNode" mnemonicParsing="false" onAction="#buyActionNode" text="Buy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="buyPs" mnemonicParsing="false" onAction="#buyActionPs" text="Buy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button fx:id="buyReact" mnemonicParsing="false" onAction="#buyActionReact" text="Buy" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#buyAction" text="Buy" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onAction="#buyAction" text="Buy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#buyAction" text="Buy" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#buyAction" text="Buy" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#buyAction" text="Buy" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label text="HTML, CSS, JavaScript">
