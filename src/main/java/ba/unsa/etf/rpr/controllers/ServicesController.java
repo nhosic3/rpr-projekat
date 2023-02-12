@@ -1,13 +1,10 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.ServiceManager;
-import ba.unsa.etf.rpr.dao.ClientDaoSQLImpl;
-import ba.unsa.etf.rpr.domain.Client;
 import ba.unsa.etf.rpr.domain.Service;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
