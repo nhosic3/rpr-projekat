@@ -32,7 +32,7 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
             c.setPhone_number(rs.getString("phone_number"));
             c.setEmail(rs.getString("email"));
             c.setPassword(rs.getString("password"));
-            c.setPaid(rs.getBoolean("paid"));
+            //c.setPaid(rs.getBoolean("paid"));
             return c;
         } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e);
@@ -48,7 +48,7 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
         m.put("phone_number", object.getPhone_number());
         m.put("email", object.getEmail());
         m.put("password", object.getPassword());
-        m.put("paid", object.isPaid());
+        //m.put("paid", object.isPaid());
         return m;
     }
 
