@@ -14,6 +14,11 @@ public class ClientManager {
     public Client searchByEmail(String e) throws ServiceException {
         return DaoFactory.clientDao().searchByEmail(e);
     }
+
+    public Client searchByPassword(String p) throws ServiceException {
+        return DaoFactory.clientDao().searchByPassword(p);
+    }
+
     public Client add(Client c) throws ServiceException {
         return DaoFactory.clientDao().add(c);
     }
