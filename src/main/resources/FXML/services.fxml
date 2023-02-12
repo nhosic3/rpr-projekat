@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <GridPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ServicesController">
    <columnConstraints>
       <ColumnConstraints />
@@ -14,12 +13,12 @@
    <children>
       <TableView prefHeight="429.0" prefWidth="642.0">
         <columns>
-          <TableColumn prefWidth="56.0" text="ID" />
-          <TableColumn prefWidth="179.0" text="Service_type" />
-            <TableColumn prefWidth="71.0" text="Price" />
-            <TableColumn prefWidth="100.0" text="Start_time" />
-            <TableColumn prefWidth="109.0" text="End_time" />
-            <TableColumn prefWidth="84.0" text="Client_ID" />
+          <TableColumn fx:id="IDColumn" prefWidth="56.0" text="ID" />
+          <TableColumn fx:id="Service_typeColumn" prefWidth="179.0" text="Service_type" />
+            <TableColumn fx:id="PriceColumn" prefWidth="71.0" text="Price" />
+            <TableColumn fx:id="Start_timeColumn" prefWidth="100.0" text="Start_time" />
+            <TableColumn fx:id="End_timeColumn" prefWidth="109.0" text="End_time" />
+            <TableColumn fx:id="Client_IDColumn" prefWidth="84.0" text="Client_ID" />
         </columns>
       </TableView>
    </children>
