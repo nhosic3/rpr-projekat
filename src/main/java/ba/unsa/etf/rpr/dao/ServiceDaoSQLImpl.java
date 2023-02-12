@@ -9,10 +9,21 @@ import java.sql.Date;
 
 public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDao {
 
+    private static ServiceDaoSQLImpl instance = null;
     public ServiceDaoSQLImpl() {
         super("Service");
     }
 
+    public static ServiceDaoSQLImpl getInstance() {
+        if (instance == null)
+            instance = new ServiceDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance() {
+        if (instance != null)
+            instance = null;
+    }
     @Override
     public Service row2object(ResultSet rs) throws ServiceException {
         try {
