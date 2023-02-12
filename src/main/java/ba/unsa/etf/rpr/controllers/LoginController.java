@@ -62,6 +62,8 @@ public class LoginController {
             alert.show();
             return;
         }
+        Stage stage2 = (Stage) passwordId.getScene().getWindow();
+        stage2.close();
         Stage stage = new Stage();
         FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/home.fxml"));
         Parent root = l.load();
