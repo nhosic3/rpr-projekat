@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.*;
 public abstract class AbstractDao<T extends Idable> implements Dao<T> {
 
-    private Connection connection;
+    private static Connection connection;
     private String tableName;
 
     public AbstractDao(String tableName) {
@@ -27,8 +27,8 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         }
     }
 
-    public Connection getConnection(){
-        return this.connection;
+    public static Connection getConnection(){
+        return AbstractDao.connection;
     }
 
     public void setConnection(Connection connection){
