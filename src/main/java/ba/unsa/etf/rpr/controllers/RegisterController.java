@@ -36,7 +36,7 @@ public class RegisterController {
             alert.show();
             return;
         }
-        Client cl = new Client(1, firstNameId.getText(), lastNameId.getText(), numberId.getText(), emailId.getText(), passwordId.getText(), false);
+        Client cl = new Client(1, firstNameId.getText(), lastNameId.getText(), numberId.getText(), emailId.getText(), passwordId.getText());
         c.add(cl);
         Stage stage = (Stage) firstNameId.getScene().getWindow();
         stage.close();
