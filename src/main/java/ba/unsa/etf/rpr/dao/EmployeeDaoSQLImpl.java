@@ -6,10 +6,22 @@ import java.sql.*;
 import java.util.*;
 
 public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements EmployeeDao {
+
+    private static EmployeeDaoSQLImpl instance = null;
     public EmployeeDaoSQLImpl() {
         super("Employee");
     }
 
+    public static EmployeeDaoSQLImpl getInstance() {
+        if (instance == null)
+            instance = new EmployeeDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance() {
+        if (instance != null)
+            instance = null;
+    }
     @Override
     public Employee row2object(ResultSet rs) throws ServiceException {
         try {
