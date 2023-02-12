@@ -41,6 +41,21 @@ public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
     }
 
     @Override
+    public Client searchById(int id) throws ServiceException{
+        List<Client> l = null;
+        try {
+            l = this.getAll();
+        } catch (ServiceException e) {
+            System.out.println(e.getMessage());
+        }
+        for(Client c : l){
+            if (c.getID() == id)
+                return c;
+        }
+        return null;
+    }
+
+    @Override
     public List<Client> searchByName(String name) throws ServiceException{
         String query = "SELECT * FROM Client WHERE First_name = ?";
         List<Client> list = new ArrayList<>();
