@@ -6,10 +6,22 @@ import ba.unsa.etf.rpr.exceptions.ServiceException;
 import java.sql.*;
 import java.util.*;
 public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
+
+    private static ClientDaoSQLImpl instance = null;
     public ClientDaoSQLImpl() {
         super("Client");
     }
 
+    public static ClientDaoSQLImpl getInstance() {
+        if (instance == null)
+            instance = new ClientDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance() {
+        if (instance != null)
+            instance = null;
+    }
     @Override
     public Client row2object(ResultSet rs) throws ServiceException {
         try {
