@@ -7,7 +7,7 @@ import java.util.*;
 
 public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements EmployeeDao {
     public EmployeeDaoSQLImpl() {
-        super("employees");
+        super("Employee");
     }
 
     @Override
