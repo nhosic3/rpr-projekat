@@ -10,7 +10,7 @@ import java.sql.Date;
 public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDao {
 
     public ServiceDaoSQLImpl() {
-        super("services");
+        super("Service");
     }
 
     @Override
