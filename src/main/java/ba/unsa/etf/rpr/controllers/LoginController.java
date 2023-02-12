@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.ClientManager;
 import ba.unsa.etf.rpr.dao.ClientDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Client;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
@@ -23,8 +24,8 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 public class LoginController {
     public TextField emailId;
     public PasswordField passwordId;
-    public Button loginButtonId;
-
+    public static Client currentClient;
+    final private ClientManager cm = new ClientManager();
     @FXML
     public void initialize() {
         passwordId.textProperty().addListener(new ChangeListener<String>() {
@@ -45,8 +46,8 @@ public class LoginController {
     public void loginAction(ActionEvent actionEvent) throws IOException, ServiceException {
         if(passwordId.getText().length()<8 || emailId.getText().isEmpty())
             return;
-        ClientDaoSQLImpl c = new ClientDaoSQLImpl();
-        Client cl = c.searchByEmail(emailId.getText());
+        //ClientDaoSQLImpl c = new ClientDaoSQLImpl();
+        Client cl = cm.searchByEmail(emailId.getText());
         if(cl == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Incorrect login data");
@@ -54,7 +55,7 @@ public class LoginController {
             alert.show();
             return;
         }
-        Client cl2 = c.searchByPassword(passwordId.getText());
+        Client cl2 = cm.searchByPassword(passwordId.getText());
         if(cl2 == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Incorrect login data");
@@ -62,6 +63,7 @@ public class LoginController {
             alert.show();
             return;
         }
+        currentClient = cl;
         Stage stage2 = (Stage) passwordId.getScene().getWindow();
         stage2.close();
         Stage stage = new Stage();
