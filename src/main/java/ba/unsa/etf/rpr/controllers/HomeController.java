@@ -19,57 +19,24 @@ public class HomeController {
     public Button buyPs;
     public Button buyReact;
 
-    public void buyActionAngular(ActionEvent actionEvent) throws IOException {
+    public void buyAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/buy.fxml"));
         Parent root = l.load();
-        BuyController rc = l.getController();
+        BuyController bc = l.getController();
         stage.setResizable(false);
         stage.setTitle("Buy");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
     }
 
-    public void buyActionHcj(ActionEvent actionEvent) throws IOException {
+    public void myServicesAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/buy.fxml"));
+        FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/services.fxml"));
         Parent root = l.load();
-        BuyController rc = l.getController();
+        ServicesController sc = l.getController();
         stage.setResizable(false);
-        stage.setTitle("Buy");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.show();
-    }
-
-    public void buyActionNode(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/buy.fxml"));
-        Parent root = l.load();
-        BuyController rc = l.getController();
-        stage.setResizable(false);
-        stage.setTitle("Buy");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.show();
-    }
-
-    public void buyActionPs(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/buy.fxml"));
-        Parent root = l.load();
-        BuyController rc = l.getController();
-        stage.setResizable(false);
-        stage.setTitle("Buy");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.show();
-    }
-
-    public void buyActionReact(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader l = new FXMLLoader(getClass().getResource("/FXML/buy.fxml"));
-        Parent root = l.load();
-        BuyController rc = l.getController();
-        stage.setResizable(false);
-        stage.setTitle("Buy");
+        stage.setTitle("My services");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
     }
