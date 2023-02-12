@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.ClientManager;
+import ba.unsa.etf.rpr.business.ServiceManager;
 import ba.unsa.etf.rpr.dao.ClientDaoSQLImpl;
 import ba.unsa.etf.rpr.dao.ServiceDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Client;
@@ -24,8 +26,9 @@ public class BuyController {
     public TextField fn;
     public TextField ln;
     public TextField email;
-    public int p;
 
+    final private ClientManager cm = new ClientManager();
+    final private ServiceManager sm = new ServiceManager();
     @FXML
     public void initialize() {
         ObservableList<String> l = FXCollections.observableArrayList();
@@ -44,17 +47,14 @@ public class BuyController {
         price.put("Photoshop", 30);
         price.put("React", 200);
 
-        ClientDaoSQLImpl c = new ClientDaoSQLImpl();
-        Client cl = c.searchByEmail(email.getText());
+        Client cl = cm.searchByEmail(email.getText());
         LocalDate l = LocalDate.now();
         ZoneId defaultZoneId = ZoneId.systemDefault();
         Date date = Date.from(l.atStartOfDay(defaultZoneId).toInstant());
         LocalDate l2 =  LocalDate.now().plusDays(15);
         Date date2 = Date.from(l2.atStartOfDay(defaultZoneId).toInstant());
-        ServiceDaoSQLImpl s = new ServiceDaoSQLImpl();
-        Service ser = new Service(1, cb.getValue(),getPrice(price, cb.getValue()) , date, date2, cl.getID());
-        s.add(ser);
-        cl.setPaid(true);
+        Service ser = new Service(1, cb.getValue(), getPrice(price, cb.getValue()), date, date2, cl.getID());
+        sm.add(ser);
         Stage stage = (Stage) cb.getScene().getWindow();
         stage.close();
     }
