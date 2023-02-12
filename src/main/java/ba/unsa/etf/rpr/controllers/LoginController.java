@@ -46,7 +46,6 @@ public class LoginController {
     public void loginAction(ActionEvent actionEvent) throws IOException, ServiceException {
         if(passwordId.getText().length()<8 || emailId.getText().isEmpty())
             return;
-        //ClientDaoSQLImpl c = new ClientDaoSQLImpl();
         Client cl = cm.searchByEmail(emailId.getText());
         if(cl == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
