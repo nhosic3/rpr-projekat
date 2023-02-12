@@ -7,6 +7,11 @@ import java.util.List;
 
 public interface ClientDao extends Dao<Client> {
     /**
+     * Searches clients by IDs
+     */
+    Client searchById(int id) throws ServiceException;
+
+    /**
      * Searches clients by names
      */
     List<Client> searchByName(String name) throws ServiceException;
