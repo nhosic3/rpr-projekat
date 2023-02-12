@@ -11,14 +11,13 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <TableView prefHeight="429.0" prefWidth="642.0">
+      <TableView fx:id="serviceTable" prefHeight="429.0" prefWidth="642.0">
         <columns>
-          <TableColumn fx:id="IDColumn" prefWidth="56.0" text="ID" />
-          <TableColumn fx:id="Service_typeColumn" prefWidth="179.0" text="Service_type" />
-            <TableColumn fx:id="PriceColumn" prefWidth="71.0" text="Price" />
-            <TableColumn fx:id="Start_timeColumn" prefWidth="100.0" text="Start_time" />
-            <TableColumn fx:id="End_timeColumn" prefWidth="109.0" text="End_time" />
-            <TableColumn fx:id="Client_IDColumn" prefWidth="84.0" text="Client_ID" />
+          <TableColumn fx:id="IDColumn" prefWidth="63.0" text="ID" />
+          <TableColumn fx:id="Service_typeColumn" prefWidth="150.0" text="Service_type" />
+            <TableColumn fx:id="PriceColumn" prefWidth="98.0" text="Price" />
+            <TableColumn fx:id="Start_timeColumn" prefWidth="140.0" text="Start_time" />
+            <TableColumn fx:id="End_timeColumn" prefWidth="148.0" text="End_time" />
         </columns>
       </TableView>
    </children>
