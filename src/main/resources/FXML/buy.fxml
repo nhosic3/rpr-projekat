@@ -12,53 +12,59 @@
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField promptText="Card number:" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <TextField promptText="Card number:" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="6">
         <buttons>
           <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
             <Button defaultButton="true" mnemonicParsing="false" onAction="#purchaseAction" text="Purchase" />
         </buttons>
       </ButtonBar>
-      <PasswordField promptText="CVV:" GridPane.columnSpan="2" GridPane.rowIndex="4">
+      <PasswordField promptText="CVV:" GridPane.columnSpan="2" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </PasswordField>
-      <DatePicker prefHeight="25.0" prefWidth="263.0" promptText="Expiry date:" GridPane.columnSpan="2" GridPane.rowIndex="3">
+      <DatePicker prefHeight="25.0" prefWidth="263.0" promptText="Expiry date:" GridPane.columnSpan="2" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </DatePicker>
-      <TextField promptText="First name:">
+      <TextField fx:id="fn" promptText="First name:">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField promptText="Last name:" GridPane.columnIndex="1">
+      <TextField fx:id="ln" promptText="Last name:" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <ChoiceBox fx:id="cb" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <ChoiceBox fx:id="cb" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </ChoiceBox>
-      <Label prefHeight="17.0" prefWidth="153.0" text="Service:" GridPane.rowIndex="1">
+      <Label prefHeight="17.0" prefWidth="153.0" text="Service:" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Label>
+      <TextField fx:id="email" promptText="E-mail:" GridPane.columnSpan="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextField>
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
