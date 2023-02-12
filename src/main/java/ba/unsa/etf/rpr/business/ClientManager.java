@@ -11,6 +11,9 @@ public class ClientManager {
         return DaoFactory.clientDao().searchByName(n);
     }
 
+    public Client searchById(int id) throws ServiceException {
+        return DaoFactory.clientDao().searchById(id);
+    }
     public Client searchByEmail(String e) throws ServiceException {
         return DaoFactory.clientDao().searchByEmail(e);
     }
