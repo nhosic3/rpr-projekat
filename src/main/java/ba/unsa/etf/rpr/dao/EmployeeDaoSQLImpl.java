@@ -5,7 +5,9 @@ import ba.unsa.etf.rpr.exceptions.ServiceException;
 
 import java.sql.*;
 import java.util.*;
-
+/**
+ * MySQL implementation for EmployeeDao
+ */
 public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements EmployeeDao {
 
     private static EmployeeDaoSQLImpl instance = null;
