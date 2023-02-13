@@ -20,7 +20,9 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Controller class for Buy window
+ */
 public class BuyController {
     public ChoiceBox<String> cb;
     public TextField fn;
@@ -29,6 +31,9 @@ public class BuyController {
 
     final private ClientManager cm = new ClientManager();
     final private ServiceManager sm = new ServiceManager();
+    /**
+     * Creating Choicebox
+     */
     @FXML
     public void initialize() {
         ObservableList<String> l = FXCollections.observableArrayList();
@@ -63,7 +68,9 @@ public class BuyController {
         Stage stage = (Stage) cb.getScene().getWindow();
         stage.close();
     }
-
+    /**
+     * A method which return price for given service
+     */
     public int getPrice(Map<String, Integer> m, String s){
         for (Map.Entry<String, Integer> e : m.entrySet()){
             if(e.getKey() == s) return e.getValue();
