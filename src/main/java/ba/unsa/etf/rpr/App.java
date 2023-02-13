@@ -52,7 +52,7 @@ public class App {
         if (cl.hasOption(getServices.getOpt()) || cl.hasOption(getServices.getLongOpt())) {
             List<Service> l = sm.getAll();
             if (l == null)
-                System.out.println("No available services!");
+                System.out.println("No available service!");
             else
                 for (Service s : l)
                     System.out.println(s);
@@ -60,7 +60,7 @@ public class App {
         else if (cl.hasOption(getClients.getOpt()) || cl.hasOption(getClients.getLongOpt())) {
             List<Client> l = cm.getAll();
             if (l == null)
-                System.out.println("No available clients!");
+                System.out.println("No available client!");
             else
                 for (Client c : l)
                     System.out.println(c);
@@ -83,10 +83,10 @@ public class App {
                 int id = Integer.parseInt(cl.getArgList().get(0));
                 cm.searchById(id);
                 cm.delete(id);
-                System.out.println("User deleted successfully!");
+                System.out.println("Client deleted successfully!");
             } catch (Exception e) {
                 if (e.getMessage().contains("not found"))
-                    System.out.println("User does not exist!");
+                    System.out.println("Client does not exist!");
                 else
                     System.out.println(e.getMessage());
             }
@@ -94,37 +94,36 @@ public class App {
         else if (cl.hasOption(addService.getOpt()) || cl.hasOption(addService.getLongOpt())) {
             try {
                 if (cl.getArgList().size() != 5) {
-                    System.out.println("Invalid number of arguments! Expected 3 arguments, recieved " + cl.getArgList().size() + " arguments.");
-                    System.out.println("[String name, String city, String stadium]");
+                    System.out.println("Invalid number of arguments!");
                 } else {
                     Date date = new Date(new SimpleDateFormat("dd MM yyyy").parse(cl.getArgList().get(2)).getTime());
                     Date date2 = new Date(new SimpleDateFormat("dd MM yyyy").parse(cl.getArgList().get(3)).getTime());
                     int ss = Integer.parseInt(cl.getArgList().get(1));
                     int ss2 = Integer.parseInt(cl.getArgList().get(4));
                     Service s = sm.add(new Service(0, cl.getArgList().get(0), ss, date, date2, ss2));
-                    System.out.println("Team added to database successfully!");
+                    System.out.println("Service added successfully!");
                     System.out.println(s);
                 }
             } catch (Exception e) {
-                System.out.println("Something went wrong with adding team...");
+                System.out.println("Error");
             }
         }
         else if (cl.hasOption(addClient.getOpt()) || cl.hasOption(addClient.getLongOpt())) {
             try {
-                if (cl.getArgList().size() != 4) {
-                    System.out.println("Invalid number of arguments! Expected 3 arguments, recieved " + cl.getArgList().size() + " arguments.");
-                    System.out.println("[String name, String city, String stadium]");
+                if (cl.getArgList().size() != 6) {
+                    System.out.println("Invalid number of arguments!");
                 } else {
                     Client c = cm.add(new Client(0, cl.getArgList().get(0), cl.getArgList().get(1), cl.getArgList().get(2), cl.getArgList().get(3), cl.getArgList().get(4)));
-                    System.out.println("Team added to database successfully!");
+                    System.out.println("Client added successfully!");
                     System.out.println(c);
                 }
             } catch (Exception e) {
-                System.out.println("Something went wrong with adding team...");
+                System.out.println("Error");
             }
         }
-        else printFormattedOptions(options);
-        if (AbstractDao.getConnection() != null)
-            AbstractDao.getConnection().close();
+        else {
+            printFormattedOptions(options);
+            System.exit(-1);
+        }
     }
 }
