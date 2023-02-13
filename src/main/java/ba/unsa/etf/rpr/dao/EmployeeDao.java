@@ -8,6 +8,11 @@ import java.util.List;
 public interface EmployeeDao extends Dao<Employee> {
 
     /**
+     * Searches employees by ID
+     */
+    Employee searchById(int id) throws ServiceException;
+
+    /**
      * Searches employees by service ID
      */
     List<Employee> searchByServiceId(int id) throws ServiceException;
