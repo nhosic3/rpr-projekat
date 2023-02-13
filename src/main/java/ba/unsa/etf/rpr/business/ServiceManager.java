@@ -12,6 +12,9 @@ public class ServiceManager {
         return DaoFactory.serviceDao().searchByServiceType(st);
     }
 
+    public Service searchById(int id) throws ServiceException {
+        return DaoFactory.serviceDao().searchById(id);
+    }
     public List<Service> searchByClientId(int c_id) throws ServiceException {
         return DaoFactory.serviceDao().searchByClientId(c_id);
     }
