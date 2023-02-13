@@ -20,12 +20,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
-
+/**
+ * Controller class for Login window
+ */
 public class LoginController {
     public TextField emailId;
     public PasswordField passwordId;
     public static Client currentClient;
     final private ClientManager cm = new ClientManager();
+    /**
+     * Implementing listener
+     */
     @FXML
     public void initialize() {
         passwordId.textProperty().addListener(new ChangeListener<String>() {
@@ -42,7 +47,9 @@ public class LoginController {
             }
         });
     }
-
+    /**
+     * Login data check
+     */
     public void loginAction(ActionEvent actionEvent) throws IOException, ServiceException {
         if(passwordId.getText().length()<8 || emailId.getText().isEmpty())
             return;
