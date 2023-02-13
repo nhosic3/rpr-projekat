@@ -3,8 +3,6 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Idable;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 public abstract class AbstractDao<T extends Idable> implements Dao<T> {
@@ -13,6 +11,9 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     private String tableName;
 
     public AbstractDao(String tableName) {
+        /**
+         * Connection to the database
+         */
         try{
             this.tableName = tableName;
             Properties p = new Properties();
