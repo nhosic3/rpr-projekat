@@ -5,6 +5,9 @@ import ba.unsa.etf.rpr.exceptions.ServiceException;
 
 import java.sql.*;
 import java.util.*;
+/**
+ * MySQL implementation for ClientDao
+ */
 public class ClientDaoSQLImpl extends AbstractDao<Client> implements ClientDao {
 
     private static ClientDaoSQLImpl instance = null;
