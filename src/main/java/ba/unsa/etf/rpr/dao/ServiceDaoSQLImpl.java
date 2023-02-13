@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Client;
 import ba.unsa.etf.rpr.domain.Service;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
 
@@ -52,6 +53,20 @@ public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDa
         return m;
     }
 
+    @Override
+    public Service searchById(int id) throws ServiceException{
+        List<Service> l = null;
+        try {
+            l = this.getAll();
+        } catch (ServiceException e) {
+            System.out.println(e.getMessage());
+        }
+        for(Service s : l){
+            if (s.getID() == id)
+                return s;
+        }
+        return null;
+    }
     @Override
     public List<Service> searchByServiceType(String st) throws ServiceException{
         String query = "SELECT * FROM Service WHERE Service_type = ?";
