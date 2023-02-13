@@ -8,7 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+/**
+ * Controller for Register window
+ */
 public class RegisterController {
     public TextField firstNameId;
     public TextField lastNameId;
@@ -19,6 +21,9 @@ public class RegisterController {
     public void registerAction(ActionEvent actionEvent) throws ServiceException {
         ClientDaoSQLImpl c = new ClientDaoSQLImpl();
         Client cl1 = c.searchByEmail(emailId.getText());
+        /**
+         * Client data check
+         */
         if(cl1 != null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Warning!");
