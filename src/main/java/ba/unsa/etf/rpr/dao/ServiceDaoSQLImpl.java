@@ -7,7 +7,9 @@ import ba.unsa.etf.rpr.exceptions.ServiceException;
 import java.sql.*;
 import java.util.*;
 import java.sql.Date;
-
+/**
+ * MySQL implementation for ServiceDao
+ */
 public class ServiceDaoSQLImpl extends AbstractDao<Service> implements ServiceDao {
 
     private static ServiceDaoSQLImpl instance = null;
