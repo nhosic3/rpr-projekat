@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Employee;
+import ba.unsa.etf.rpr.domain.Service;
 import ba.unsa.etf.rpr.exceptions.ServiceException;
 
 import java.sql.*;
@@ -29,7 +30,7 @@ public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements Employe
             e.setID(rs.getInt("id"));
             e.setFirst_name(rs.getString("first_name"));
             e.setLast_name(rs.getString("last_name"));
-            e.setBrith_date(rs.getDate("brith_date"));
+            e.setBirth_date(rs.getDate("birth_date"));
             e.setHire_date(rs.getDate("hire_date"));
             e.setSalary(rs.getInt("salary"));
             e.setService_id(rs.getInt("service_id"));
@@ -45,13 +46,27 @@ public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements Employe
         m.put("id", object.getID());
         m.put("first_name", object.getFirst_name());
         m.put("last_name", object.getLast_name());
-        m.put("brith_date", object.getBrith_date());
+        m.put("birth_date", object.getBirth_date());
         m.put("hire_date", object.getHire_date());
         m.put("salary", object.getSalary());
         m.put("service_id", object.getService_id());
         return m;
     }
 
+    @Override
+    public Employee searchById(int id) throws ServiceException{
+        List<Employee> l = null;
+        try {
+            l = this.getAll();
+        } catch (ServiceException e) {
+            System.out.println(e.getMessage());
+        }
+        for(Employee e : l){
+            if (e.getID() == id)
+                return e;
+        }
+        return null;
+    }
     @Override
     public List<Employee> searchByServiceId(int s_id) throws ServiceException{
         String query = "SELECT * FROM Employee WHERE service_id = ?";
