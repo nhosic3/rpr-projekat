@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Employee implements Idable {
     private int ID;
     private String first_name, last_name;
-    private Date brith_date;
+    private Date birth_date;
     private Date hire_date;
     private int salary;
     private int service_id;
@@ -18,11 +18,11 @@ public class Employee implements Idable {
     public Employee(){
 
     }
-    public Employee(int ID, String first_name, String last_name, Date brith_date, Date hire_date, int salary, int service_id) {
+    public Employee(int ID, String first_name, String last_name, Date birth_date, Date hire_date, int salary, int service_id) {
         this.ID = ID;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.brith_date = brith_date;
+        this.birth_date = birth_date;
         this.hire_date = hire_date;
         this.salary = salary;
         this.service_id = service_id;
@@ -52,12 +52,12 @@ public class Employee implements Idable {
         this.last_name = last_name;
     }
 
-    public Date getBrith_date() {
-        return brith_date;
+    public Date getBirth_date() {
+        return birth_date;
     }
 
-    public void setBrith_date(Date brith_date) {
-        this.brith_date = brith_date;
+    public void setBirth_date(Date birth_date) {
+        this.birth_date = birth_date;
     }
 
     public Date getHire_date() {
@@ -89,12 +89,12 @@ public class Employee implements Idable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return ID == employee.ID && salary == employee.salary && service_id == employee.service_id && Objects.equals(first_name, employee.first_name) && Objects.equals(last_name, employee.last_name) && Objects.equals(brith_date, employee.brith_date) && Objects.equals(hire_date, employee.hire_date);
+        return ID == employee.ID && salary == employee.salary && service_id == employee.service_id && Objects.equals(first_name, employee.first_name) && Objects.equals(last_name, employee.last_name) && Objects.equals(birth_date, employee.birth_date) && Objects.equals(hire_date, employee.hire_date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, first_name, last_name, brith_date, hire_date, salary, service_id);
+        return Objects.hash(ID, first_name, last_name, birth_date, hire_date, salary, service_id);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class Employee implements Idable {
                 "id=" + ID +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
-                ", brith_date=" + brith_date +
+                ", brith_date=" + birth_date +
                 ", hire_date=" + hire_date +
                 ", salary=" + salary +
                 ", service_id=" + service_id +
