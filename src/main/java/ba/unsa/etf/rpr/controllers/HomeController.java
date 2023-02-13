@@ -11,7 +11,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
-
+/**
+ * Controller class for Home window
+ */
 public class HomeController {
     public Button buyAngular;
     public Button buyHcj;
