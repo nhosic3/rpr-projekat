@@ -10,7 +10,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.Date;
-
+/**
+ * Controller for My services window
+ */
 public class ServicesController {
     public TableColumn<Service, Integer> IDColumn;
     public TableColumn<Service, String> Service_typeColumn;
