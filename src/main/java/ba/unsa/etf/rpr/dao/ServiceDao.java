@@ -10,6 +10,11 @@ public interface ServiceDao extends Dao<Service> {
     /**
      * Searches services by service type
      */
+    Service searchById(int id) throws ServiceException;
+
+    /**
+     * Searches services by service type
+     */
     List<Service> searchByServiceType(String serviceType) throws ServiceException;
 
     /**
