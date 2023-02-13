@@ -8,8 +8,8 @@ import ba.unsa.etf.rpr.exceptions.ServiceException;
 import java.util.List;
 
 public class EmployeeManager {
-    public List<Employee> searchByName(String n) throws ServiceException {
-        return DaoFactory.employeeDao().searchByName(n);
+    public Employee searchById(int id) throws ServiceException {
+        return DaoFactory.employeeDao().searchById(id);
     }
 
     public List<Employee> searchByServiceId(int s_id) throws ServiceException {
